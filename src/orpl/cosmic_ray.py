@@ -4,6 +4,7 @@ Cosmic Ray
 
 Provides Raman spectrum cosmic ray removal tools.
 """
+
 import numpy as np
 from scipy.ndimage import binary_dilation
 
@@ -76,7 +77,7 @@ def crfilter_multi(
     Parameters
     ----------
     signals : np.ndarray
-        an array of signals (MxN), M are the individual signal and N are wavelengths
+        an array of signals (MxN), M is the number of accumulations and N are wavelengths
     width : float, optional
         filter window width, by default 3
     disparity_threshold : float, optional
@@ -102,8 +103,15 @@ def crfilter_multi(
         )
         flagged_cr = disparity > disparity_threshold
 
+        # Edge cases
+
         if flagged_cr.sum() == 0:
             # No detected cosmic rays
+            continue
+
+        if np.all(flagged_cr):
+            # entire signal is flagged as cosmic rays
+            signal_filtered = 0 * signal
             continue
 
         # Widening detection with width parameter
