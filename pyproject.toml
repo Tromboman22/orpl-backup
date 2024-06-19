@@ -1,6 +1,27 @@
 [build-system]
+requires = ["setuptools >= 61.0"]
 build-backend = "setuptools.build_meta"
-requires = [
-  "setuptools>=60",
-  "wheel",
+
+
+[project]
+name = "ORPL"
+version = "v1.0.10c"
+authors = [{ name = "Guillaume Sheehy", email = "guillaume.sheehy@polymtl.ca" }]
+dependencies = [
+  "pyqt5",
+  "numpy",
+  "scipy",
+  "matplotlib",
+  "pyperclip",
+  "qtmodern",
+  "ruamel.yaml<0.18.0",
+  "sif-parser",
+  "renishawWiRE",
 ]
+description = "Open Raman Processing Library"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { file = "LICENSE.md" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
