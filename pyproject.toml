@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 
 [project]
-name = "ORPL"
+name = "orpl"
 version = "v1.0.10c"
 authors = [{ name = "Guillaume Sheehy", email = "guillaume.sheehy@polymtl.ca" }]
 dependencies = [
