@@ -4,6 +4,7 @@ Baseline Removal
 
 Provides Raman spectrum baseline removal tools.
 """
+
 from typing import Tuple
 
 import numpy as np
@@ -493,7 +494,10 @@ def bubbleloop(
 
 
 def bubblefill(
-    spectrum: np.ndarray, min_bubble_widths: list = 50, fit_order: int = 1
+    spectrum: np.ndarray,
+    min_bubble_widths: list = 50,
+    fit_order: int = 1,
+    do_savgol: bool = True,
 ) -> Tuple[np.ndarray, np.ndarray]:
     """
     bubblefill splits a spectrum into it's raman and baseline components.
@@ -558,7 +562,9 @@ def bubblefill(
     else:
         filter_width = max(min_bubble_widths, 10)
     # print(filter_width)
-    baseline = savgol_filter(baseline, int(2 * (filter_width // 4) + 3), 3)
+
+    if do_savgol:
+        baseline = savgol_filter(baseline, int(2 * (filter_width // 4) + 3), 3)
 
     raman = spectrum - baseline
 
