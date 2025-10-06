@@ -36,3 +36,4 @@ class PlotWidget(QtWidgets.QWidget):
         layout.setContentsMargins(0, 0, 0, 0)
 
         return layout
+    

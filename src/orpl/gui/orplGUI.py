@@ -100,7 +100,7 @@ class main_window(Ui_mainWindow, QMainWindow):
         super().__init__()
 
         # Internal references
-        self.working_directory = Path().cwd()
+        self.working_directory = Path().cwd()   # default Path() calls current directory, cwd() ensures it is absolute
         self.raw_spectra: List[np.ndarray] = []
         self.baseline_spectra: List[np.ndarray] = []
         self.irf_corrections: List[np.ndarray] = []
@@ -817,7 +817,7 @@ def launch_gui():
     logger.info("Created application")
 
     # Changing Theme
-    qtmodern.styles.light(app)
+    qtmodern.styles.dark(app)
     logger.info("Setting Theme")
 
     window = main_window()

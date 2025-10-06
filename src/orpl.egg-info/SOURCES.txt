@@ -2,13 +2,17 @@ LICENSE.md
 MANIFEST.in
 README.md
 pyproject.toml
-setup.cfg
 src/orpl/__init__.py
+src/orpl/__main__.py
 src/orpl/baseline_removal.py
+src/orpl/bubblegif.py
 src/orpl/calibration.py
 src/orpl/cosmic_ray.py
+src/orpl/datatypes.py
+src/orpl/file_io.py
 src/orpl/metrics.py
 src/orpl/normalization.py
+src/orpl/pipelines.py
 src/orpl/plot.py
 src/orpl/synthetic.py
 src/orpl.egg-info/PKG-INFO
@@ -18,3 +22,8 @@ src/orpl.egg-info/requires.txt
 src/orpl.egg-info/top_level.txt
 src/orpl/data/__init__.py
 src/orpl/data/synthetic_presets.json
+src/orpl/gui/__init__.py
+src/orpl/gui/mplcanvas.py
+src/orpl/gui/orplGUI.py
+src/orpl/gui/uis/__init__.py
+src/orpl/gui/uis/ui_mainWindow.py
