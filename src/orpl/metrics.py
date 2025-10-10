@@ -67,3 +67,4 @@ def assi(raman: np.ndarray) -> float:
     deviation2 = (raman_) ** 2
     quality_factor = (deviation_sign * deviation2).mean()
     return quality_factor
+

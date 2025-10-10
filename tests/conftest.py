@@ -24,6 +24,7 @@ GROUPS = {
     # <marker>: <TITLE>,
     "metrics": "METRICS",
     "normalization": "NORMALIZATION",
+    "testing": "TESTING",
 }
 
 _printed_groups = set()
@@ -40,8 +41,18 @@ _printed_groups = set()
 def pytest_collection_modifyitems(session, config, items):
     # Reorder tests: metrics first, then normalization, then the rest
     grouped_tests = []
+    deselected = []
+    # for marker in GROUPS:
+    #     grouped_tests.extend([item for item in items if marker in item.keywords])
+
+
     for marker in GROUPS:
-        grouped_tests.extend([item for item in items if marker in item.keywords])
+        for item in items:
+            if(marker in item.keywords):
+                grouped_tests.append(item)
+            else:
+                deselected.append(item)
+
 
     # Any tests without a known marker go at the end
     others = [item for item in items
@@ -64,36 +75,5 @@ def pytest_runtest_protocol(item, nextitem):
 
     return None
 
-"""
-# If going for separated by modules instead:
 
 
-import pytest
-from pathlib import Path
-
-_printed_modules = set()
-
-def pytest_runtest_protocol(item, nextitem):
-    global _printed_modules
-
-    # Get the test file name (e.g., test_math_utils.py)
-    module_name = Path(item.fspath).stem
-
-    # Print header once per module
-    if module_name not in _printed_modules:
-        print(f"\n\n=== Module: {module_name} ===")
-        _printed_modules.add(module_name)
-
-    return None  # Continue normal test running
-
-    
-def pytest_runtest_logreport(report):
-    if report.when == "call":
-        if report.passed:
-            print(f"✓ {report.nodeid.split('::')[-1]}")
-        elif report.failed:
-            print(f"✗ {report.nodeid.split('::')[-1]}")
-        elif report.skipped:
-            print(f"- {report.nodeid.split('::')[-1]}")
-
-"""

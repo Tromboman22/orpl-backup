@@ -11,8 +11,8 @@ from orpl import (
     cosmic_ray,
     datatypes,
     file_io,
+    metrics,
     normalization,
     plot,
     synthetic,
 )
-from orpl import metrics

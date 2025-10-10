@@ -1,11 +1,14 @@
 [run]
 branch = True
-source =
-    ../src/orpl 
-    .           
+source = ../src/orpl
+omit = 
+    */__init__.py
 
 
 [report]
-
-
-[html]
+omit = 
+    */__init__.py
+    */__main__.py
+    */conftest.py
+    
+skip_empty = True
