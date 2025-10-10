@@ -250,3 +250,4 @@ def test_assi_with_negative_constant_array():
     assert np.isnan(assi(raman))
     # No flags for empty array here, code returns nan array when constant array is entered because of snv func 
     # More specifically, when you do func - func.mean() and then func/func.std() this encurrs a division by 0 no matter the input
+    
