@@ -147,7 +147,7 @@ def test_raman_snr_with_all_zeros(synthetic_nylon_zip):
     # 3. Everything at 0
     all_zero = raman_snr(raman, baseline, 0.0, 0.0)
     assert np.all(np.isnan(all_zero))
-    print("Read comments in test file", end = "")
+    print("\nRead comments in test file", end = "")
     # Should reading ever returns a 0 value by some chance, there is no failsafe code will just return faulty output
 
 
@@ -168,7 +168,7 @@ def test_raman_snr_negative_values_settings(synthetic_nylon_zip):
     assert np.all(np.isnan(raman_snr(raman, baseline, 1.0, -10.0)))
     # Both laser power and exposure time negative
     assert np.all(np.isfinite(raman_snr(raman, baseline, -1.0, -10.0)))
-    print("Read comments in test file", end = "")
+    print("\nRead comments in test file", end = "")
     # --> Should the final test not fail? No failsafe for negative input, error just allowed to freely enter the function
     
 
@@ -176,10 +176,9 @@ def test_raman_snr_negative_values_settings(synthetic_nylon_zip):
 def test_raman_snr_negative_values_spectra():
     raman = np.full((6, 1000), -1)
     baseline = raman
-    print("Read comments in test file", end = "")
+    print("\nRead comments in test file", end = "")
     assert np.all(np.isnan(raman_snr(raman, baseline, 1.0, 10.0)))
     # --> Should the test not fail? No failsafe for negative input, error just allowed to freely enter the function
-
 
 
 # 2. assi
@@ -228,7 +227,7 @@ def test_assi_output_is_accurate(synthetic_nylon_zip):
 @pytest.mark.metrics
 def test_assi_with_constant_array():
     raman = np.full((6, 10), 0.5)
-    print("Read comments in test file", end = "")
+    print("\nRead comments in test file", end = "")
     assert np.isnan(assi(raman))
     # Once again division by zero, function runs smoothly and breaks inside the normalization.snv() function
     # More specifically, when you do func - func.mean() and then func/func.std() this encurrs a division by 0 no matter the input
@@ -237,7 +236,7 @@ def test_assi_with_constant_array():
 @pytest.mark.metrics
 def test_assi_with_negative_constant_array():
     raman = np.full((6, 10), -0.5)
-    print("Read comments in test file", end = "")
+    print("\nRead comments in test file", end = "")
     assert np.isnan(assi(raman))
     # No flags for negative array here, code returns nan array when constant array is entered because of snv func 
     # More specifically, when you do func - func.mean() and then func/func.std() this encurrs a division by 0 no matter the input
@@ -246,7 +245,7 @@ def test_assi_with_negative_constant_array():
 @pytest.mark.metrics
 def test_assi_with_negative_constant_array():
     raman = np.full((6, 10), 0)
-    print("Read comments in test file", end = "")
+    print("\nRead comments in test file", end = "")
     assert np.isnan(assi(raman))
     # No flags for empty array here, code returns nan array when constant array is entered because of snv func 
     # More specifically, when you do func - func.mean() and then func/func.std() this encurrs a division by 0 no matter the input
